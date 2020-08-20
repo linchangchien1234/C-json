@@ -1,0 +1,9 @@
+C# web api 從預設XML格式 轉為 JSON格式
+ 在專案下 /App_Start/WebApiConfig.cs檔加入以下程式
+
+//移除 XML Formatter
+//轉為JSON格式
+var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+//JSON排版縮排
+config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
